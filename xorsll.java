@@ -1,9 +1,9 @@
 import java.nio.file.NotLinkException;
 
-class Node<T>{
-    T data;
-    Node <T>next;
-    Node(T gd)
+class Node{
+    int data;
+    Node next;
+    Node(int gd)
     {
         data = gd;
         next = null;
@@ -15,29 +15,29 @@ class Node<T>{
 }
 
 class SinglyLinkedList<T>{
-      Node<T> head;
+      Node head;
       SinglyLinkedList()
       {
           head = null;
       }
-      void add(T  gd)
+      void add(int  gd)
       {
-        Node<T> newNode = new Node(gd);
+        Node newNode = new Node(gd);
         if( head == null)
         {
             head = newNode;
         }
         else{
-            Node<T> tptr;
+            Node tptr;
            for( tptr =head ; tptr.next!=null; tptr=tptr.next);
            tptr.next = newNode;
         } 
      }  
-     void add( int pos , T gd)
+     void add( int pos , int gd)
      {
-        Node<T> newNode = new Node(gd);
+        Node newNode = new Node(gd);
         int count ;
-        Node<T> tptr , prev=null;
+        Node tptr , prev=null;
         for( tptr = head , count = 1;  count != pos&& tptr!=null ; 
                                             prev =tptr,tptr=tptr.next,count++);
         // System.out.println(pos+" "+count);
@@ -54,8 +54,8 @@ class SinglyLinkedList<T>{
 
      void remove( T gd)
     {
-        Node <T>prev=null;
-        Node<T>tptr;
+        Node prev=null;
+        Node tptr;
         for( tptr = head ; tptr != null&& tptr.data != gd ;prev=tptr, tptr = tptr.next);
         if( tptr== head)
               head = head.next;
@@ -66,7 +66,7 @@ class SinglyLinkedList<T>{
 
         void display()
         {
-            Node <T>tptr;
+            Node tptr;
             for( tptr = head ; tptr!=null; tptr= tptr.next)
                 //System.out.print(tptr.data+" ");
                 tptr.display();
@@ -82,7 +82,7 @@ public class SinglyLinkedListDemo{
            for( slow = fast = sl.head ; fast!=null && fast.next!=null ;
                                    slow=slow.next,fast=fast.next.next);
            return slow.data;
-       }*/
+       }
        static void reverseList(SinglyLinkedList sl)
        {
             Node curr;
@@ -97,14 +97,14 @@ public class SinglyLinkedListDemo{
 
             }
          sl.head = prev;
-       }
+       }*/
        void makeBothTraversal( SinglyLinkedList sl)
        {
            
            Node curr,safe;
            Node prev = null;
            for( curr = sl.head ; curr !=null ; ){
-               curr.next = prev^curr.next;
+               curr.next = prev ^ curr.next;
                safe = curr;
                curr = prev ^ curr.next;
                prev = safe;
@@ -124,28 +124,19 @@ public class SinglyLinkedListDemo{
        }
 public  static void main(String[] arg)
 {
-    SinglyLinkedList<Integer> sl = new SinglyLinkedList();
+    SinglyLinkedList sl = new SinglyLinkedList();
     sl.add(10);
     sl.add(20);
     sl.add(30);
     sl.add(40);
   //  sl.add(50);
-    sl.display();
+    
     
    
     
    // System.out.println(findMidPoint(sl));
-   SinglyLinkedList<String> sl1 = new SinglyLinkedList();
-    sl1.add("Yagavi");
-    sl1.add("Jeevitha");
-    sl1.add("Subashini");
-    sl1.add("Poornima");
-  //  sl.add(50);
-    sl1.display();
-    reverseList(sl);
-    sl.display();
-    reverseList(sl1);
-    sl1.display();
+  
+   
 }
 
 }
