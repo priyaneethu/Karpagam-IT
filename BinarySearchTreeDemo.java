@@ -50,7 +50,47 @@ class BinarySearchTree
               safe.left = null;
            else
               safe. right= null;    
-       }  
+       }
+         
+       else if( curr.left == null || curr.right==null)
+       {
+            if( curr == root){
+                 if( curr.left != null)
+                    root = curr.left;
+                 else
+                    root = curr.right;   
+            }
+            else{
+            if( curr.left !=null)
+            {
+                if(safe.data < curr.data)
+                   safe.right = curr.left;
+                else
+                    safe.left = curr.left;   
+            }
+            else{
+                if(safe.data < curr.data)
+                    safe.right = curr.right;
+                else
+                   safe.left = curr.right;    
+            }
+        }
+       }
+       else{
+           Node tptr;
+              for( tptr= curr.right; tptr.left != null; tptr=tptr.left);
+              tptr.left = curr.left;
+              if(curr==root)
+              {
+                  root = curr.right;
+              }
+              else{
+              if( safe.data > curr.data)
+                  safe.left = curr.right;
+              else
+                 safe.right = curr.right;    
+           }   
+       }
 
    }
 }
@@ -59,17 +99,13 @@ public class BinarySearchTreeDemo{
    public static void main(String[] arg)
    {
        BinarySearchTree  bst = new BinarySearchTree();
-       bst.add(40);
-       bst.add(20);
-       bst.add(10);
-       bst.add(60);
-       bst.add(56);
-       bst.add(100);
-       bst.add(150);
-       bst.add(85);
+       int []input = {40,20,60,10,30,50,70,5,3,35,33,32};
+       for( int i: input)
+          bst.add(i);   
        bst.inorderDisplay(bst.root);
-       bst.remove(150);
+       bst.remove(40);
        System.out.println();
        bst.inorderDisplay(bst.root);
+       System.out.println(bst.root.data);
    }
 } 
